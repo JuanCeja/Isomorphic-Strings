@@ -28,22 +28,21 @@ var t2 = "title";
 
 var isIsomorphic = function(s, t) {
 
-    let stringS = new Set();
-    let stringT = new Set();
+    if(s.length !== t.length) return false;
 
-    if (s.length !== t.length){
-        return false;
-    }
+    let obj1 = {};
+    let obj2 = {};
 
     for (let i = 0; i < s.length; i++){
-        stringS.add(s[i]);
+        if(obj1[s[i]] !== obj2[t[i]]){
+            return false;
+        } else {
+            obj1[s[i]] = i;
+            obj2[t[i]] = i;
+        }
     }
 
-    for (let j = 0; j < t.length; j++){
-        stringT.add(t[j]);
-    }
-
-    return stringS.size === stringT.size ? true : false;
+    return true;
 
 };
 
